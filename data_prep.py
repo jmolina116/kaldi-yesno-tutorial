@@ -30,7 +30,7 @@ def wav_scp(filenames):
     results = []
     for filename in filenames:
         basename = filename.split('.')[0]
-        results.append("{} {}".format(basename, 'waves_yesno/' + filename))
+        results.append("{} {}".format(basename.split('.')[0], 'waves_yesno/' + filename))
     return "\n".join(results)
 
 with open('data/train_yesno/wav.scp', 'w') as train_text, open('data/test_yesno/wav.scp', 'w') as test_text:
@@ -42,7 +42,7 @@ def utt2spk(filenames):
     results = []
     for filename in filenames:
         basename = filename.split('.')
-        results.append("{} {}".format(basename, 'waves_yesno/' + 'global'))
+        results.append("{} {}".format(basename.split('.')[0], 'waves_yesno/' + 'global'))
     return "\n".join(results)
 
 with open('data/train_yesno/utt2spk', 'w') as train_text, open('data/test_yesno/utt2spk', 'w') as test_text:
