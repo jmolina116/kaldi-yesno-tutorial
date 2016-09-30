@@ -26,24 +26,33 @@ with open('data/train_yesno/text', 'w') as train_text, open('data/test_yesno/tex
     test_text.write(text(ones))
 
 # finish this method
-def wav_scp():
-    pass
+def wav_scp(filenames):
+    results = []
+    for filename in filenames:
+        basename = filename.split('.')[0]
+        results.append("{} {}".format(basename, 'waves_yesno/' + filename))
+    return "\n".join(results)
 
 with open('data/train_yesno/wav.scp', 'w') as train_text, open('data/test_yesno/wav.scp', 'w') as test_text:
     train_text.write(wav_scp(zeroes))
     test_text.write(wav_scp(ones))
 
-
 # finish this method
-def utt2spk():
-    pass
+def utt2spk(filenames):
+    results = []
+    for filename in filenames:
+        basename = filename.split('.')
+        results.append("{} {}".format(basename, 'waves_yesno/' + 'global'))
+    return "\n".join(results)
 
 with open('data/train_yesno/utt2spk', 'w') as train_text, open('data/test_yesno/utt2spk', 'w') as test_text:
     train_text.write(utt2spk(zeroes))
     test_text.write(utt2spk(ones))
 
-
 # finish this method
 # note that, spk2utt can be generate by using Kaldi util, once you have utt2spk file.
 def spk2utt():
-    pass
+    os.system('utils/utt2spk_to_spk2utt.pl data/train_yesno/utt2spk data/train_yesno/spk2utt')
+    os.system('utils/utt2spk_to_spk2utt.pl data/test_yesno/utt2spk data/test_yesno/spk2utt')
+
+spk2utt()
