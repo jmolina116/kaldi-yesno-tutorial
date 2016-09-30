@@ -52,7 +52,7 @@ with open('data/train_yesno/utt2spk', 'w') as train_text, open('data/test_yesno/
 # finish this method
 # note that, spk2utt can be generate by using Kaldi util, once you have utt2spk file.
 def spk2utt():
-    os.system('utils/utt2spk_to_spk2utt.pl data/train_yesno/utt2spk data/train_yesno/spk2utt')
-    os.system('utils/utt2spk_to_spk2utt.pl data/test_yesno/utt2spk data/test_yesno/spk2utt')
+    os.system('utils/utt2spk_to_spk2utt.pl data/train_yesno/utt2spk > data/train_yesno/spk2utt')
+    os.system('utils/utt2spk_to_spk2utt.pl data/test_yesno/utt2spk > data/test_yesno/spk2utt')
 
 spk2utt()
