@@ -1,2 +1,2 @@
-YES ken
-NO lo
+YES {k, e, n}
+NO {l, o}
