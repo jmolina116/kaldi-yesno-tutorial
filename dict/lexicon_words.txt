@@ -1,2 +1,2 @@
-YES Y
-NO N
+YES ken
+NO lo
