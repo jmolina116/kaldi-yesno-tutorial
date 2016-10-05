@@ -1,4 +1,4 @@
-YES Y
-NO N
+YES k e n
+NO l o
 <SIL> SIL
 <eps> SIL
