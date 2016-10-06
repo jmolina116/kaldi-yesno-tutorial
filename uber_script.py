@@ -5,7 +5,7 @@ Usage:
 """
 import os, sys
 
-num_jobs = 1
+num_jobs = '1'
 if len(sys.argv) == 2:
     if sys.argv.isdigit():
         num_jobs = sys.argv[1]
