@@ -19,7 +19,7 @@ import os, sys
 
 num_jobs = '1'
 if len(sys.argv) == 2:
-    if sys.argv.isdigit():
+    if sys.argv[1].isdigit():
         num_jobs = sys.argv[1]
     else:
         raise ValueError('Argument to this script must be an integer.')
