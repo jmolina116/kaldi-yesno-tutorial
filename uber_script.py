@@ -68,7 +68,8 @@ cmd = 'steps/get_ctm.sh data data/lang_test_tg exp/mono/decode_test_yesno'
 os.system(cmd)
 
 # print to screen human-readable top 20 results of lattice
-cmd = "$KALDI_ROOT/kaldi/src/fstbin/fstcopy " + \
+os.system('source ./path.sh')
+cmd = "$KALDI_ROOT/src/fstbin/fstcopy " + \
       "'ark:gunzip -c exp/mono/fsts.1.gz|' " + \
       "ark,t:- | head -n 20"
 os.system(cmd)
