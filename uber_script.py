@@ -8,9 +8,8 @@ NOTE: Default value for <num_jobs> if not given is 1.
 NOTE: I decided to hardcode the paths because many of these scripts had
 hardcoded them and it would break too much to give user the leeway to decide
 where things go. For example, the data_prep.py script assumes the data
-directories to be in data/train_yesno and data/test_yesno, many of the shell
-scripts assume ../kaldi to be the path to kaldi. For consistency, I am not
-allowing the user to control these.
+directories to be in data/train_yesno and data/test_yesno. For consistency, I am
+not allowing the user to control these.
     If this were a simple input and output path situation, asking for user input
 might be better, but in this case I think it's better not to give the user the
 choice of where these go.
@@ -71,4 +70,4 @@ os.system(cmd)
 cmd = "$KALDI_ROOT/src/fstbin/fstcopy " + \
       "'ark:gunzip -c exp/mono/fsts.1.gz|' " + \
       "ark,t:- | head -n 20"
-os.system('source ./path.sh\n' + cmd)
+os.system('source ./path.sh\n' + cmd)  # kaldi path as set in path.sh
