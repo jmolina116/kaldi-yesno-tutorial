@@ -41,8 +41,8 @@ os.system('utils/fix_data_dir.sh data/test_yesno')
 
 # create dict directory and contents
 os.system('mkdir dict')
-os.system('echo -e "K\nEH\nN\nL\nOW" > dict/phones.txt')
-os.system('echo -e "YES K EH N\nNO L OW" > dict/lexicon.txt')
+os.system('echo "K\nEH\nN\nL\nOW" > dict/phones.txt')
+os.system('echo "YES K EH N\nNO L OW" > dict/lexicon.txt')
 os.system('echo "SIL" > dict/silence_phones.txt')
 os.system('echo "SIL" > dict/optional_silence.txt')
 os.system('mv dict/phones.txt dict/nonsilence_phones.txt')
@@ -78,9 +78,10 @@ cmd = 'utils/mkgraph.sh --mono data/lang_test_tg exp/mono exp/mono/graph_tgpr'
 os.system(cmd)
 cmd = 'steps/decode.sh --nj ' + num_jobs + \
       ' exp/mono/graph_tgpr data/test_yesno exp/mono/decode_test_yesno'
+os.system(cmd)
 
 # evaluate
-cmd = 'steps/get_ctm.sh data data/lang_test_tg exp/mono/decode_test_yesno'
+cmd = 'steps/get_ctm.sh data/test_yesno exp/mono/graph_tgpr exp/mono/decode_test_yesno'
 os.system(cmd)
 
 # print to screen human-readable top 20 results of lattice
