@@ -27,10 +27,27 @@ if len(sys.argv) > 2:
     message += '   EG: python uber_script.py 4'
     raise ValueError(message)
 
+# create data directory and subdirs
+os.system('mkdir data')
+os.system('mkdir data/train_yesno')
+os.system('mkdir data/test_yesno')
+
 # prepare the data
 os.system('python data_prep.py')
+os.system('utils/utt2spk_to_spk2utt.pl data/train_yesno/utt2spk > data/train_yesno/spk2utt')
+os.system('utils/utt2spk_to_spk2utt.pl data/test_yesno/utt2spk > data/test_yesno/spk2utt')
 os.system('utils/fix_data_dir.sh data/train_yesno/')
 os.system('utils/fix_data_dir.sh data/test_yesno/')
+
+# create dict directory and contents
+os.system('mkdir dict')
+os.system('echo -e "K\nEH\nN\nL\nOW" > dict/phones.txt')
+os.system('echo -e "YES K EH N\nNO L OW" > dict/lexicon.txt')
+os.system('echo "SIL" > dict/silence_phones.txt')
+os.system('echo "SIL" > dict/optional_silence.txt')
+os.system('mv dict/phones.txt dict/nonsilence_phones.txt')
+os.system('cp dict/lexicon.txt dict/lexicon_words.txt')
+os.system('echo "<SIL> SIL" >> dict/lexicon.txt')
 
 # language model
 cmd = 'utils/prepare_lang.sh ' + \
