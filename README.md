@@ -74,7 +74,7 @@ Now, for each dataset (train, test), we need to generate these files representin
     * We will use filenames without extensions as utt_ids for now.
     * Although recordings are in Hebrew, we will use English words, YES and NO, to avoid complicating the problem.
 * `wav.scp`
-    * Indexing files to unique ids.
+    * Indexing files to unique ids. 
     * `<file_id> <wave filename with path OR command to get wave file>`
         * e.g. `0_1_0_0_1_0_1_1 waves_yesno/0_1_0_0_1_0_1_1.wav`
     * Again, we can use file names as file_ids.
@@ -109,6 +109,7 @@ Finish the code to generate each set of 4 files, using the lists of file names, 
 utils/fix_data_dir.sh data/train_yesno/
 utils/fix_data_dir.sh data/test_yesno/
 ```
+
 
 If you're done with the code, your data directory should look like this, at this point. 
 ```
@@ -278,9 +279,10 @@ This will end up with `lat.N.gz` files in the output directory, where N goes fro
 ### Looking at results
 
 If you look inside the decoding script, it ends with calling the scoring script (`local/score.sh`), which generates hypotheses and computes word error rate of the testset 
-See `exp/mono/decode_test_yesno/wer_N` files to look the WER's, and `exp/mono/decode_test_yesno/scoring/N.tra` files for transcripts. 
-`N` here indicates language model weight, LMWT, that scoring script used at each iteration to interpret the best path in `lat.N.gz` into a sentence. 
-You can deliberately specify the weight using `--min_lmwt` and `--max_lmwt` options, if you want. 
+See `exp/mono/decode_test_yesno/wer_X` files to look the WER's, and `exp/mono/decode_test_yesno/scoring/X.tra` files for transcripts. 
+`X` here indicates language model weight, *LMWT*, that scoring script used at each iteration to interpret the best paths for utterances in `lat.N.gz` files into word sequences. (Remember `N` is #thread during decoing operartion)
+You can deliberately specify the weight using `--min_lmwt` and `--max_lmwt` options when `score.sh` is called, if you want. 
+(See lecture slides on decoding to refresh what LMWT is, if you are not sure)
 
 Or if you are interested in getting word-level alignment information for each reocoding file, take a look at `steps/get_ctm.sh` script.
 
@@ -288,8 +290,8 @@ Or if you are interested in getting word-level alignment information for each re
 
 * Replicate the tutorial with your own hand with these conditions. 
     * Use actual phonetic notations for these two hebrew words, instead of makeshift Y/N phones.
-        * Pronunciations can be found on various resources, for example, [wiktionary](https://en.wiktionary.org/wiki/Wiktionary:Main_Page) can be helpful.
+        * Pronunciations can be found on various resources, for example, [wiktionary](https://en.wiktionary.org/wiki/Wiktionary:Main_Page) can be helpful. 
     * Use `get_ctm.sh` to get alignment as well as hypotheses & WER scores.
-    * Make a *uber* script file that runs the complete pipeline.
-* Submit your code files, and `data`, `dict`, and `exp` directory. 
+    * Make a *uber* script file that runs the complete pipeline. 
+* Submit your code files, and `data`, `dict`, and `exp` directory.
 
