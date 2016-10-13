@@ -34,8 +34,6 @@ os.system('mkdir data/test_yesno')
 
 # prepare the data
 os.system('python data_prep.py')
-os.system('utils/utt2spk_to_spk2utt.pl data/train_yesno/utt2spk > data/train_yesno/spk2utt')
-os.system('utils/utt2spk_to_spk2utt.pl data/test_yesno/utt2spk > data/test_yesno/spk2utt')
 os.system('utils/fix_data_dir.sh data/train_yesno')
 os.system('utils/fix_data_dir.sh data/test_yesno')
 
